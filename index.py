@@ -1,7 +1,7 @@
 import mysql.connector
 import bcrypt
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 
 # Database configuration
@@ -43,20 +43,20 @@ def authenticate_user(username, password):
 
 # Generate authentication token
 def generate_authentication_token(username, permissions):
-    SECRET_KEY = "your_secret_key_here"  # Replace with your own secure secret key
+    SECRET_KEY = "014d61750140711e36dbc4de72e623a09b8539dddadb48d3df109b64f18bac6d"  # Replace with your own secure secret key
     payload = {
         'username': username,
         'permissions': permissions,
         'system_name': 'YourSystemName',
-        'issued_at': datetime.utcnow().isoformat(),
-        'expires_at': (datetime.utcnow() + timedelta(hours=1)).isoformat()
+        'issued_at': datetime.now(timezone.utc).isoformat(),
+        'expires_at': (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
     }
     token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
     return token
 
 # Validate authentication token
 def validate_authentication_token(token):
-    SECRET_KEY = "your_secret_key_here"  # Replace with your own secure secret key
+    SECRET_KEY = "014d61750140711e36dbc4de72e623a09b8539dddadb48d3df109b64f18bac6d"  # Replace with your own secure secret key
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
         # Additional validation logic (e.g., check expiration time)
