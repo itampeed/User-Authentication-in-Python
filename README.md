@@ -39,7 +39,9 @@ This repository provides a simple example of user authentication in Python using
    ```
     and then replace your secrect key with the generated one
 
-5. Run the `index.py` script:
+5. import the database into your sql database:
+
+6. Run the `index.py` script:
 
    ```bash
    python index.py

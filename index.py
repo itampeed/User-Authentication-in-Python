@@ -5,10 +5,10 @@ from datetime import datetime, timedelta, timezone
 
 
 # Database configuration
-DB_USER = "root"
-DB_PASSWORD = ""
+DB_USER = "Your_database_username"
+DB_PASSWORD = "Your_database_password"
 DB_DATABASE = "authentication_db"
-DB_HOST = "localhost"
+DB_HOST = "Your_database_host(mostly localhost)"
 
 # Connect to the database
 def get_database_connection():
@@ -43,7 +43,7 @@ def authenticate_user(username, password):
 
 # Generate authentication token
 def generate_authentication_token(username, permissions):
-    SECRET_KEY = "014d61750140711e36dbc4de72e623a09b8539dddadb48d3df109b64f18bac6d"  # Replace with your own secure secret key
+    SECRET_KEY = "Your secret token"  # Replace with your own secure secret key
     payload = {
         'username': username,
         'permissions': permissions,
@@ -56,7 +56,7 @@ def generate_authentication_token(username, permissions):
 
 # Validate authentication token
 def validate_authentication_token(token):
-    SECRET_KEY = "014d61750140711e36dbc4de72e623a09b8539dddadb48d3df109b64f18bac6d"  # Replace with your own secure secret key
+    SECRET_KEY = "Your secrect token"  # Replace with your own secure secret key
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
         # Additional validation logic (e.g., check expiration time)
